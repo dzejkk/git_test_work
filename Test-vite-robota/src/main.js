@@ -2,6 +2,10 @@ import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
+import { setupCounterMinus } from './counterMinus.js'
+
+
+
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -14,6 +18,8 @@ document.querySelector('#app').innerHTML = `
     <h1>Hello Vite!</h1>
     <div class="card">
       <button id="counter" type="button"></button>
+      <button id="counter-minus" type="button"></button>
+      <button id="reset" type="button">Reset</button>
     </div>
     <p class="read-the-docs">
       Click on the Vite logo to learn more
@@ -21,4 +27,19 @@ document.querySelector('#app').innerHTML = `
   </div>
 `
 
-setupCounter(document.querySelector('#counter'))
+
+
+// get setters from components
+
+const plusCounter = setupCounter(document.querySelector('#counter'));
+const minusCounter = setupCounterMinus(document.querySelector('#counter-minus'));
+
+
+// setup reset
+
+const resetBtn = document.querySelector('#reset');
+
+resetBtn.addEventListener('click',()=> {
+  plusCounter(0);
+  minusCounter(0);
+})
